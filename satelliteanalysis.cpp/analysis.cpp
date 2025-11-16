@@ -49,8 +49,14 @@ double norm_of_single_vector(const Vec3 S1) {
     return sqrt(S1.x*S1.x + S1.y*S1.y + S1.z*S1.z);
 }
 
+// Relative motion, linear approximation
 Vec3 relative_motion(const Vec3 S1, const Vec3 S2, const Vec3 V1, const Vec3 V2, const double t) {
-    return sum(diff(S1, S2), scalar_product(diff(V1, V2), 2));
+    return sum(diff(S1, S2), scalar_product(diff(V1, V2), t));
+}
+
+// Dot product, scalar value
+double dot(const Vec3 a, const Vec3 b) {
+    return a.x*b.x + a.y*b.y + a.z*b.z;
 }
 
 // Angle between 2 vectors
@@ -61,12 +67,12 @@ double asd(const Vec3 a, const Vec3 b) {
     return acos(d/(norm_vector_a*norm_vector_b));
 }
 
-// Dot product, scalar value
-double dot(const Vec3 a, const Vec3 b) {
-    return a.x*b.x + a.y*b.y + a.z*b.z;
-}
-
 int main() {
     Vec3 S1 = {7000, 0, 0};
     Vec3 S2 = {7001, 1, 0};
+    Vec3 V1 = {0, 7.5, 0};
+    Vec3 V2 = {0, 7.4, 0};
+
+    double t = 10; // seconds
+    Vec3 relative_position = relative_motion(S1, S2, V1, V2, t);
 }
