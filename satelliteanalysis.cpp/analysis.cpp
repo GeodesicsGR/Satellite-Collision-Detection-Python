@@ -75,4 +75,8 @@ int main() {
 
     double t = 10; // seconds
     Vec3 relative_position = relative_motion(S1, S2, V1, V2, t);
-}
+    cout << "Relative position: "
+         << relative_position.x << ","
+         << relative_position.y << ","
+         << relative_position.z << endl;
+}   
